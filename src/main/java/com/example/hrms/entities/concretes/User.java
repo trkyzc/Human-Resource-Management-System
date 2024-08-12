@@ -19,6 +19,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -37,7 +38,7 @@ public class User implements UserDetails{
 	public User() {};
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	//@JsonIgnore                   //json gösteriminin dışında tutar.
 	private int id;
@@ -51,7 +52,7 @@ public class User implements UserDetails{
 	@Column(name="password")
 	private String password;
 	
-	@Transient                        //özelliği veritabanının dışında tutar.
+	@Transient                     //özelliği veritabanının dışında tutar.
 	private String repeatedPassword;
 	
 	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -59,6 +60,8 @@ public class User implements UserDetails{
 	@Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
 	private Set<Role> authorities;
+	
+	
 	
 	
 	

@@ -1,5 +1,6 @@
 package com.example.hrms.mapper;
 
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -10,7 +11,7 @@ import com.example.hrms.entities.dtos.JobAdvertDto;
 @Mapper
 public interface JobAdvertMapper {
 	
-	JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
+	//JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
 	
 	@Mapping(source = "employer.companyName", target = "employerName")
     @Mapping(source = "position.name", target = "positionName")
