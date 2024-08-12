@@ -21,7 +21,7 @@ import com.example.hrms.business.abstracts.UserService;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig{
 	
 	private final JwtAuthFilter jwtAuthFilter;

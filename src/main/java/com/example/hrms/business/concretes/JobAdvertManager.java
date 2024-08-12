@@ -20,7 +20,6 @@ import com.example.hrms.entities.dtos.JobAdvertCreateRequest;
 import com.example.hrms.entities.dtos.JobAdvertDto;
 import com.example.hrms.mapper.JobAdvertMapper;
 //import com.example.hrms.mapper.JobAdvertMapperImpl;
-import com.example.hrms.mapper.JobAdvertMapperImpl;
 
 import jakarta.persistence.EntityManager;
 
@@ -33,7 +32,7 @@ public class JobAdvertManager implements JobAdvertService {
 	@Autowired
 	private EntityManager entityManager;
 	
-	private final JobAdvertMapperImpl jobAdvertMapper = new JobAdvertMapperImpl();
+	//private final JobAdvertMapperImpl jobAdvertMapper = new JobAdvertMapperImpl();
 
 	@Autowired
 	public JobAdvertManager(JobAdvertDao jobAdvertDao) {
@@ -69,8 +68,8 @@ public class JobAdvertManager implements JobAdvertService {
 	public DataResult<List<JobAdvertDto>> getByActiveJobAdverts() {
 		
 		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvert->new JobAdvertDto(jobAdvert)).collect(Collectors.toList());
-		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(JobAdvertMapper.INSTANCE::toDto).collect(Collectors.toList());
-		List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvertMapper::toDto).collect(Collectors.toList());
+		List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(JobAdvertMapper.INSTANCE::toDto).collect(Collectors.toList());
+		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvertMapper::toDto).collect(Collectors.toList());
 		return new SuccessDataResult<List<JobAdvertDto>>(jobAdverts,"İlanlar başarıyla görüntülendi.");
 	}
 

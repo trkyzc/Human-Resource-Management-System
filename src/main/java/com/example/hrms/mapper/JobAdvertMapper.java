@@ -8,10 +8,10 @@ import org.mapstruct.factory.Mappers;
 import com.example.hrms.entities.concretes.JobAdvert;
 import com.example.hrms.entities.dtos.JobAdvertDto;
 
-@Mapper
+@Mapper(componentModel="spring")
 public interface JobAdvertMapper {
 	
-	//JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
+	JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
 	
 	@Mapping(source = "employer.companyName", target = "employerName")
     @Mapping(source = "position.name", target = "positionName")
