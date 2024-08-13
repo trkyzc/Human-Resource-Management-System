@@ -13,6 +13,9 @@ import com.example.hrms.business.abstracts.EmployerService;
 import com.example.hrms.core.utilities.results.DataResult;
 import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.entities.concretes.Employer;
+import com.example.hrms.entities.dtos.EmployerRequestDto;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("hrms/api/employers")
@@ -28,9 +31,9 @@ public class EmployerController {
 	
 	
 	@PostMapping("/signup")
-	Result signUp(@RequestBody Employer employer) {
+	Result signUp(@Valid @RequestBody EmployerRequestDto employerRequestDto) {
 		
-		return employerService.signUp(employer);
+		return employerService.signUp(employerRequestDto);
 	}
 	
 	@GetMapping("/getall")

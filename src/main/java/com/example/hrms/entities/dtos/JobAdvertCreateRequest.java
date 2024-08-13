@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,19 +22,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JobAdvertCreateRequest {
 	
-	
+	@Size(min = 10, max = 100,message = "Description must be between 10 and 100 characters.")
 	private String description;
 	
-	
+	@Min(value = 0)
 	private int salaryMin;
 	
 	
 	private int salaryMax;
 	
-
+	//0 dan büyük olmalı.Validation kullan.
+	@Min(value = 0)
 	private int numberOfOpenPosition;
 	
 	
+	@Future //Geçmiş bir tarih olamaz.
 	private LocalDate applicationDeadline;   
 	
 	

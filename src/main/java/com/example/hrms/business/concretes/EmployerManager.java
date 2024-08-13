@@ -1,20 +1,22 @@
 package com.example.hrms.business.concretes;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.hrms.business.abstracts.EmployerService;
 import com.example.hrms.core.utilities.results.DataResult;
-import com.example.hrms.core.utilities.results.ErrorResult;
 import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.core.utilities.results.SuccessDataResult;
 import com.example.hrms.core.utilities.results.SuccessResult;
 import com.example.hrms.dataAccess.abstracts.EmployerDao;
 import com.example.hrms.entities.concretes.Employer;
-import com.example.hrms.entities.concretes.JobAdvert;
+import com.example.hrms.entities.concretes.Role;
+import com.example.hrms.entities.dtos.EmployerRequestDto;
+import com.example.hrms.mapper.EmployerMapper;
 
 
 @Service
@@ -24,7 +26,6 @@ public class EmployerManager implements EmployerService {
 	PasswordEncoder passwordEncoder;
 	
 
-	@Autowired
 	public EmployerManager(EmployerDao employerDao, PasswordEncoder passwordEncoder) {
 		super();
 		this.employerDao = employerDao;
@@ -33,25 +34,39 @@ public class EmployerManager implements EmployerService {
 
 
 	@Override
-	public Result signUp(Employer employer) {
+	public Result signUp(EmployerRequestDto employerRequestDto) {
 		
-		if(employer.getCompanyName()== null || employer.getWebAddress()==null ||  
-				employer.getEmail()==null ||  employer.getPhoneNumber()==null || 
-				employer.getPassword()==null ||  employer.getRepeatedPassword()==null) {
-			
-			return new ErrorResult("Please fill in all fields.");
-		}
-		else {
-			if(!employerDao.findByEmail(employer.getEmail()).isEmpty()) {
-				return new ErrorResult("Bu mail daha önce kullanılmış");   
-			}
-			else {
-				employer.setPassword(passwordEncoder.encode(employer.getPassword()));
-				employer.setRepeatedPassword(employer.getPassword());
-				employerDao.save(employer);
-				return new SuccessResult("The employer has been successfully registered.");
-			}
-		}
+		Employer employer = EmployerMapper.INSTANCE.toEntity(employerRequestDto);
+		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
+		employer.setRepeatedPassword(employer.getPassword());
+
+		Set<Role> roles = new HashSet<>();
+		roles.add(Role.ROLE_EMPLOYER);
+		employer.setAuthorities(roles);
+		
+		employerDao.save(employer);
+		return new SuccessResult("The employer has been successfully registered.");
+		                         
+		                         
+		//Spring validation sayesinde gerek kalmadı.
+		
+//		if(employer.getCompanyName()== null || employer.getWebAddress()==null ||  
+//				employer.getEmail()==null ||  employer.getPhoneNumber()==null || 
+//				employer.getPassword()==null ||  employer.getRepeatedPassword()==null) {
+//			
+//			return new ErrorResult("Please fill in all fields.");
+//		}
+//		else {
+//			if(!employerDao.findByEmail(employer.getEmail()).isEmpty()) {
+//				return new ErrorResult("Bu mail daha önce kullanılmış");   
+//			}
+//			else {
+//				employer.setPassword(passwordEncoder.encode(employer.getPassword()));
+//				employer.setRepeatedPassword(employer.getPassword());
+//				employerDao.save(employer);
+//				return new SuccessResult("The employer has been successfully registered.");
+//			}
+//		}
 	}
 
 	

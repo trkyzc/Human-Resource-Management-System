@@ -20,7 +20,7 @@ public class PositionManager implements PositionService {
 	
 	PositionDao positionDao;
 
-	@Autowired
+	
 	public PositionManager(PositionDao positionDao) {
 		super();
 		this.positionDao = positionDao;

@@ -21,9 +21,11 @@ import com.example.hrms.core.utilities.results.DataResult;
 import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.core.utilities.results.SuccessDataResult;
 import com.example.hrms.entities.concretes.Candidate;
+import com.example.hrms.entities.dtos.CandidateRequestDto;
 import com.example.hrms.entities.dtos.LoginDto;
 import com.example.hrms.security.JwtProvider;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -48,9 +50,9 @@ public class CandidateController {
 
 
 	@PostMapping("/signup")
-	public Result signUp(@RequestBody Candidate candidate) {
+	public Result signUp(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
 		
-		return candidateService.signUp(candidate);  
+		return candidateService.signUp(candidateRequestDto);  
 		
 	}
 	

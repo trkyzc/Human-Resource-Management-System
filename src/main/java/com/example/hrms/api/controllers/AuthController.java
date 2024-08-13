@@ -11,6 +11,8 @@ import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.entities.concretes.User;
 import com.example.hrms.entities.dtos.LoginDto;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("hrms/api/auth")
 public class AuthController {
@@ -23,7 +25,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/login")
-	 public Result login(@RequestBody LoginDto loginDto) {
+	 public Result login(@Valid @RequestBody LoginDto loginDto) {
 		 
 		 DataResult<String> result = userService.login(loginDto);
 		 if (result.isSuccess()) {

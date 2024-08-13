@@ -22,6 +22,8 @@ import com.example.hrms.entities.concretes.JobAdvert;
 import com.example.hrms.entities.dtos.JobAdvertCreateRequest;
 import com.example.hrms.entities.dtos.JobAdvertDto;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("hrms/api/jobAdverts")
 public class JobAdvertController {
@@ -36,7 +38,7 @@ public class JobAdvertController {
 
 
 	@PostMapping("/addAdvert")
-	Result addAdvert(@RequestBody JobAdvertCreateRequest jobAdvertCreateRequest) {
+	Result addAdvert(@Valid @RequestBody JobAdvertCreateRequest jobAdvertCreateRequest) {
 		
 		return jobAdvertService.addAdvert(jobAdvertCreateRequest);
 		

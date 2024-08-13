@@ -32,9 +32,6 @@ public class JobAdvertManager implements JobAdvertService {
 	@Autowired
 	private EntityManager entityManager;
 	
-	//private final JobAdvertMapperImpl jobAdvertMapper = new JobAdvertMapperImpl();
-
-	@Autowired
 	public JobAdvertManager(JobAdvertDao jobAdvertDao) {
 		super();
 		this.jobAdvertDao = jobAdvertDao;
@@ -43,23 +40,15 @@ public class JobAdvertManager implements JobAdvertService {
 	@Override
 	public Result addAdvert(JobAdvertCreateRequest jobAdvertCreateRequest) {
 		
+		JobAdvert jobAdvert = JobAdvertMapper.INSTANCE.toEntity(jobAdvertCreateRequest);
+		
 		City city = entityManager.getReference(City.class, jobAdvertCreateRequest.getCityId());
 		Position position = entityManager.getReference(Position.class, jobAdvertCreateRequest.getPositionId());
 		Employer employer = entityManager.getReference(Employer.class, jobAdvertCreateRequest.getEmployerId());
-		
-		
-		JobAdvert jobAdvert = new JobAdvert();
-		jobAdvert.setActive(true);
-		jobAdvert.setApplicationDeadline(jobAdvertCreateRequest.getApplicationDeadline());
 		jobAdvert.setCity(city);
-		jobAdvert.setDescription(jobAdvertCreateRequest.getDescription());
 		jobAdvert.setEmployer(employer);
 		jobAdvert.setPosition(position);
-		jobAdvert.setNumberOfOpenPosition(jobAdvertCreateRequest.getNumberOfOpenPosition());
-		jobAdvert.setSalaryMax(jobAdvertCreateRequest.getSalaryMax());
-		jobAdvert.setSalaryMin(jobAdvertCreateRequest.getSalaryMin());
-		
-		
+
 		jobAdvertDao.save(jobAdvert);
 		return new SuccessResult("İlan başarıyla eklendi.");
 	}
@@ -67,9 +56,10 @@ public class JobAdvertManager implements JobAdvertService {
 	@Override
 	public DataResult<List<JobAdvertDto>> getByActiveJobAdverts() {
 		
-		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvert->new JobAdvertDto(jobAdvert)).collect(Collectors.toList());
+		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvert->new JobAdvertDto(jobAdvert)).collect(Collectors.toList()); // my mapper
+		
 		List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(JobAdvertMapper.INSTANCE::toDto).collect(Collectors.toList());
-		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvertMapper::toDto).collect(Collectors.toList());
+		
 		return new SuccessDataResult<List<JobAdvertDto>>(jobAdverts,"İlanlar başarıyla görüntülendi.");
 	}
 

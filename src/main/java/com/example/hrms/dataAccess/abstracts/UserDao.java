@@ -7,5 +7,9 @@ import com.example.hrms.entities.concretes.User;
 public interface UserDao extends JpaRepository<User, Integer> {
 	
 	User findByUsername(String username);
+	
+	boolean existsByUsername(String username);
+
+	boolean existsByEmail(String email);
 
 }

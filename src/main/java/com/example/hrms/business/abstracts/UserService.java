@@ -62,11 +62,8 @@ public class UserService implements UserDetailsService {
 
 
 	public DataResult<String> login(LoginDto loginDto) {
-		//LOG
-		log.info("logine girildi");
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
 		if (authentication.isAuthenticated()) {
-			log.info("isauthenticate girildi");
             return new SuccessDataResult<>(jwtProvider.generateToken(loginDto.getUsername()), "Başarılı.");
 		}
 		

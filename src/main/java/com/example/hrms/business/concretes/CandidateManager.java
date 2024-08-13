@@ -1,6 +1,8 @@
 package com.example.hrms.business.concretes;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +22,10 @@ import com.example.hrms.core.utilities.results.SuccessDataResult;
 import com.example.hrms.core.utilities.results.SuccessResult;
 import com.example.hrms.dataAccess.abstracts.CandidateDao;
 import com.example.hrms.entities.concretes.Candidate;
+import com.example.hrms.entities.concretes.Role;
+import com.example.hrms.entities.dtos.CandidateRequestDto;
 import com.example.hrms.entities.dtos.LoginDto;
+import com.example.hrms.mapper.CandidateMapper;
 import com.example.hrms.security.JwtProvider;
 @Service
 public class CandidateManager implements CandidateService {
@@ -32,7 +37,7 @@ public class CandidateManager implements CandidateService {
 	private final BCryptPasswordEncoder passwordEncoder;
 	
 	
-	@Autowired
+	
 	public CandidateManager(CandidateDao candidateDao, ValidationService validationService, AuthenticationManager authenticationManager, JwtProvider jwtProvider, BCryptPasswordEncoder passwordEncoder) {
 		super();
 		this.candidateDao = candidateDao;
@@ -45,36 +50,50 @@ public class CandidateManager implements CandidateService {
 
 
 	@Override
-	public Result signUp(Candidate candidate) {
+	public Result signUp(CandidateRequestDto candidateRequestDto) {
 		
-		if(candidate.getFirstName()== null || candidate.getLastName()==null ||  
-				candidate.getEmail()==null ||  candidate.getIdentityNumber()==null || 
-				candidate.getPassword()==null ||  candidate.getRepeatedPassword()==null ||   
-				Integer.toString(candidate.getBirthYear())==null) {
-			
-			return new ErrorResult("Please fill in all fields.");		
-			
-		}
-		else {
-			if(validationService.validate(candidate.getIdentityNumber(), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthYear())) {
-				
-				if(!candidateDao.findByEmailOrIdentityNumber(candidate.getEmail(),candidate.getIdentityNumber()).isEmpty()) {
-					return new ErrorResult("Bu mail veya tc daha önce kullanılmış");
-				}
-				else {
-
-					candidate.setPassword(passwordEncoder.encode(candidate.getPassword()));
-					candidate.setRepeatedPassword(candidate.getPassword());
-					candidateDao.save(candidate);
-					return new SuccessResult("The candidate has been successfully registered.");
-				}
-				
-			}
-			else {
-				return new ErrorResult("The user could not be verified.");
-			}
-			
-		}
+		Candidate candidate = CandidateMapper.INSTANCE.toEntity(candidateRequestDto);
+		candidate.setPassword(passwordEncoder.encode(candidate.getPassword()));
+		candidate.setRepeatedPassword(candidate.getPassword());
+	
+		Set<Role> roles = new HashSet<>();
+		roles.add(Role.ROLE_CANDIDATE);
+		candidate.setAuthorities(roles);
+		
+		candidateDao.save(candidate);
+		return new SuccessResult("The candidate has been successfully registered.");
+		
+		
+		//Spring validation sayesinde gerek kalmadı.
+		
+//		if(candidate.getFirstName()== null || candidate.getLastName()==null ||  
+//				candidate.getEmail()==null ||  candidate.getIdentityNumber()==null || 
+//				candidate.getPassword()==null ||  candidate.getRepeatedPassword()==null ||   
+//				Integer.toString(candidate.getBirthYear())==null) {
+//			
+//			return new ErrorResult("Please fill in all fields.");		
+//			
+//		}
+//		else {
+//			if(validationService.validate(candidate.getIdentityNumber(), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthYear())) {
+//				
+//				if(!candidateDao.findByEmailOrIdentityNumber(candidate.getEmail(),candidate.getIdentityNumber()).isEmpty()) {
+//					return new ErrorResult("Bu mail veya tc daha önce kullanılmış");
+//				}
+//				else {
+//
+//					candidate.setPassword(passwordEncoder.encode(candidate.getPassword()));
+//					candidate.setRepeatedPassword(candidate.getPassword());
+//					candidateDao.save(candidate);
+//					return new SuccessResult("The candidate has been successfully registered.");
+//				}
+//				
+//			}
+//			else {
+//				return new ErrorResult("The user could not be verified.");
+//			}
+//			
+//		}
 		
 	}
 
@@ -98,16 +117,6 @@ public class CandidateManager implements CandidateService {
         }
     }
 
-
-
-//	@Override
-//	public DataResult<String> login(LoginDto loginDto) {
-//		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
-//		if (authentication.isAuthenticated()) {
-//            return new SuccessDataResult<>(jwtProvider.generateToken(loginDto.getUsername()), "Başarılı.");
-//		}
-//		
-//		throw new UsernameNotFoundException("Invalid username {} " + loginDto.getUsername());
 
 
 
