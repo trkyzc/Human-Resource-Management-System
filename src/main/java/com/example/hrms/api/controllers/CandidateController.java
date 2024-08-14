@@ -58,8 +58,8 @@ public class CandidateController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll(){	
-		return candidateService.getAll();
+	public ResponseEntity<DataResult<List<Candidate>>> getAll(){	
+		return new ResponseEntity<>(candidateService.getAll(), HttpStatus.OK);
 	}
 	
 //	 @GetMapping("/getbyusername")
@@ -70,7 +70,7 @@ public class CandidateController {
 	 @GetMapping("/getbyusername")
 	 public ResponseEntity<Result> getByUsername(@RequestParam String username) {
 		 return new ResponseEntity<>(candidateService.getByUsername(username), HttpStatus.OK);	
-	    }
+	 }
 
 }
 	 

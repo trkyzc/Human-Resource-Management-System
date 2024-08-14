@@ -1,5 +1,7 @@
 package com.example.hrms.api.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +27,9 @@ public class AuthController {
 	}
 	
 	@PostMapping("/login")
-	 public Result login(@Valid @RequestBody LoginDto loginDto) {
+	 public ResponseEntity<Result> login(@Valid @RequestBody LoginDto loginDto) {
 		 
-		 DataResult<String> result = userService.login(loginDto);
-		 return result;
+		 return new ResponseEntity<>(userService.login(loginDto),HttpStatus.OK);
 		 
 		}
 

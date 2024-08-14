@@ -3,6 +3,8 @@ package com.example.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,16 +31,16 @@ public class PositionController {
 
 
     @GetMapping("/getall")
-	DataResult<List<Position>> getAll(){
+	ResponseEntity<DataResult<List<Position>>> getAll(){
 		
-		return positionService.getAll();
+		return new ResponseEntity<>(positionService.getAll(),HttpStatus.OK);
 	
 	}
     
     @PostMapping("/add")
-    Result add(@RequestBody Position position) {
+    ResponseEntity<Result> add(@RequestBody Position position) {
     	
-    	return positionService.add(position);
+    	return new ResponseEntity<> (positionService.add(position), HttpStatus.OK);
     }
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,39 +40,39 @@ public class JobAdvertController {
 
 
 	@PostMapping("/addAdvert")
-	Result addAdvert(@Valid @RequestBody JobAdvertCreateRequest jobAdvertCreateRequest) {
+	ResponseEntity<Result> addAdvert(@Valid @RequestBody JobAdvertCreateRequest jobAdvertCreateRequest) {
 		
-		return jobAdvertService.addAdvert(jobAdvertCreateRequest);
+		return new ResponseEntity<> (jobAdvertService.addAdvert(jobAdvertCreateRequest), HttpStatus.OK);
 		
 	}
 	
 	@GetMapping("/getByActiveJobAdverts")
-	DataResult<List<JobAdvertDto>> getByActiveJobAdverts() {
+	ResponseEntity<DataResult<List<JobAdvertDto>>> getByActiveJobAdverts() {
 		
-		return jobAdvertService.getByActiveJobAdverts();
+		return new ResponseEntity<> (jobAdvertService.getByActiveJobAdverts(),HttpStatus.OK);
 	} 
 	
 	@GetMapping("/getAllByOrderByApplicationDateAsc")
-	DataResult<List<JobAdvertDto>> getAllByOrderByApplicationDateAsc() {
+	ResponseEntity<DataResult<List<JobAdvertDto>>> getAllByOrderByApplicationDateAsc() {
 		
-		return jobAdvertService.getAllByOrderByApplicationDateAsc();
+		return new ResponseEntity<>(jobAdvertService.getAllByOrderByApplicationDateAsc(),HttpStatus.OK);
 	} 
 	
 	@GetMapping("/getAllByOrderByApplicationDateDesc")
-	DataResult<List<JobAdvertDto>> getAllByOrderByApplicationDateDesc(){
-		return jobAdvertService.getAllByOrderByApplicationDateDesc();
+	ResponseEntity<DataResult<List<JobAdvertDto>>> getAllByOrderByApplicationDateDesc(){
+		return new ResponseEntity<> (jobAdvertService.getAllByOrderByApplicationDateDesc(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllByEmployer")
-	DataResult<List<JobAdvertDto>> getAllByEmployer(@Valid @RequestParam int employerId) {
+	ResponseEntity<DataResult<List<JobAdvertDto>>> getAllByEmployer(@Valid @RequestParam int employerId) {
 		
-		return jobAdvertService.getAllByEmployer(employerId);
+		return new ResponseEntity<> (jobAdvertService.getAllByEmployer(employerId),HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateJobAdvertStatus")
-	Result updateJobAdvertStatus(@RequestParam int id) {
+	ResponseEntity<Result> updateJobAdvertStatus(@RequestParam int id) {
 		
-		return jobAdvertService.updateJobAdvertStatus(id);
+		return new ResponseEntity<> (jobAdvertService.updateJobAdvertStatus(id),HttpStatus.OK);
 	}
 	
 	

@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JobAdvertCreateRequest {
 	
-	@Size(min = 10, max = 100,message = "Description must be between 10 and 100 characters.")
+	@Size(min = 10, max = 100,message = "Decription en az 10 en fazla 100 karakter arasında olmalıdır")
 	private String description;
 	
 	@Min(value = 0)

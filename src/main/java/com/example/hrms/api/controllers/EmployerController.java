@@ -3,6 +3,8 @@ package com.example.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,14 +33,14 @@ public class EmployerController {
 	
 	
 	@PostMapping("/signup")
-	Result signUp(@Valid @RequestBody EmployerRequestDto employerRequestDto) {
+	ResponseEntity<Result> signUp(@Valid @RequestBody EmployerRequestDto employerRequestDto) {
 		
-		return employerService.signUp(employerRequestDto);
+		return new ResponseEntity<>(employerService.signUp(employerRequestDto),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getall")
-	DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	ResponseEntity<DataResult<List<Employer>>> getAll(){
+		return new ResponseEntity<>(employerService.getAll(),HttpStatus.OK);
 	}
 	
 
