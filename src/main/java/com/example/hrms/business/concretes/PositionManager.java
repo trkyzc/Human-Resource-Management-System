@@ -15,6 +15,8 @@ import com.example.hrms.core.utilities.results.SuccessResult;
 import com.example.hrms.dataAccess.abstracts.PositionDao;
 import com.example.hrms.entities.concretes.Position;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class PositionManager implements PositionService {
 	
@@ -37,8 +39,7 @@ public class PositionManager implements PositionService {
 	public Result add(Position position) {
 		
 		if(!positionDao.findByName(position.getName()).isEmpty()) {
-			
-			return new ErrorResult("This position has already exist.");		
+			throw new EntityNotFoundException("This position has already exist.");
 		}
 		else {
 			

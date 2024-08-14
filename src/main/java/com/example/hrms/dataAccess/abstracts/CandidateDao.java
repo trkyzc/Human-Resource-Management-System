@@ -1,6 +1,7 @@
 package com.example.hrms.dataAccess.abstracts;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,7 +14,7 @@ public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 	//User tablosundaki username alanına göre arama yapacak. 
 	
 
-    Candidate findByUsername(String username); 
+    Optional<Candidate> findByUsername(String username); 
 	
 
 }

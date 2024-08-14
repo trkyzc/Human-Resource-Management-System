@@ -14,10 +14,10 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME) //bu annotation'ın ne zaman çalışacağını belirtir.
 public @interface UniqueUsername {
 	
-	String message() default "Username already exists"; //eğer hata mesajı belirtilmezse default olarak bu mesajı verir.
+	String message() default "Bu kullanıcı adı zaten kullanılıyor"; //eğer hata mesajı belirtilmezse default olarak bu mesajı verir.
 
 	Class<?>[] groups() default {};  //validation işlemlerini gruplandırmak için kullanılır.
 
-	Class<? extends Payload>[] payload() default {};  //represents additional information about annotation
+	Class<? extends Payload>[] payload() default {};  //validation işlemlerine ek bilgi eklemek için kullanılır.
 
 }

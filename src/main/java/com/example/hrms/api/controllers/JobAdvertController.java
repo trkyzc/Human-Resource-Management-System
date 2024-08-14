@@ -62,7 +62,7 @@ public class JobAdvertController {
 	}
 	
 	@GetMapping("/getAllByEmployer")
-	DataResult<List<JobAdvertDto>> getAllByEmployer(@RequestParam int employerId) {
+	DataResult<List<JobAdvertDto>> getAllByEmployer(@Valid @RequestParam int employerId) {
 		
 		return jobAdvertService.getAllByEmployer(employerId);
 	}

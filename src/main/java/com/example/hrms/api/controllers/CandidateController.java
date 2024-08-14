@@ -3,6 +3,8 @@ package com.example.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("hrms/api/candidates")
-@Slf4j
 public class CandidateController {
 	
 	CandidateService candidateService;
@@ -38,7 +39,7 @@ public class CandidateController {
 	private final AuthenticationManager authenticationManager;
 	UserService userService;
 	
-	@Autowired
+	
 	public CandidateController(CandidateService candidateService, JwtProvider jwtProvider, AuthenticationManager authenticationManager, UserService userService) {
 		super();
 		this.candidateService = candidateService;
@@ -50,9 +51,9 @@ public class CandidateController {
 
 
 	@PostMapping("/signup")
-	public Result signUp(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
+	public ResponseEntity<Result> signUp(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
 		
-		return candidateService.signUp(candidateRequestDto);  
+		return new ResponseEntity<>(candidateService.signUp(candidateRequestDto), HttpStatus.OK);  
 		
 	}
 	
@@ -61,22 +62,16 @@ public class CandidateController {
 		return candidateService.getAll();
 	}
 	
+//	 @GetMapping("/getbyusername")
+//	 public DataResult<Candidate> getByUsername(@RequestParam String username) {
+//	        return candidateService.getByUsername(username);
+//	    }
+	 
 	 @GetMapping("/getbyusername")
-	    public DataResult<Candidate> getByUsername(@RequestParam String username) {
-	        return candidateService.getByUsername(username);
+	 public ResponseEntity<Result> getByUsername(@RequestParam String username) {
+		 return new ResponseEntity<>(candidateService.getByUsername(username), HttpStatus.OK);	
 	    }
 
-//	 @PostMapping("/login")
-//	 public Result login(@RequestBody LoginDto loginDto) {
-//		 
-//		 DataResult<String> result = userService.login(loginDto);
-//		 if (result.isSuccess()) {
-//		     System.out.println("JWT Token: " + result.getData());
-//		 } else {
-//		     System.out.println("Login failed: " + result.getMessage());
-//		 }
-//		 return result;
-//		}
 }
 	 
 

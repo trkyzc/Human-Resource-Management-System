@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.hrms.business.abstracts.JobAdvertService;
 import com.example.hrms.core.utilities.results.DataResult;
+import com.example.hrms.core.utilities.results.ErrorDataResult;
 import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.core.utilities.results.SuccessDataResult;
 import com.example.hrms.core.utilities.results.SuccessResult;
@@ -22,6 +23,7 @@ import com.example.hrms.mapper.JobAdvertMapper;
 //import com.example.hrms.mapper.JobAdvertMapperImpl;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 
 
 @Service
@@ -78,17 +80,23 @@ public class JobAdvertManager implements JobAdvertService {
 	@Override
 	public DataResult<List<JobAdvertDto>> getAllByEmployer(int employerId) {
 		
-		return new SuccessDataResult<List<JobAdvertDto>>(jobAdvertDao.getAllByEmployer(employerId),"İlanlar başarıyla görüntülendi.");
+		List<JobAdvertDto> jobAdverts = jobAdvertDao.getAllByEmployer(employerId);
+		if(jobAdverts.isEmpty()) {
+			throw new EntityNotFoundException("İşverene ait ilan bulunamadı.");
+		}
+		else {
+		return new SuccessDataResult<List<JobAdvertDto>>(jobAdverts,"İlanlar başarıyla görüntülendi.");
+		}
 	}
 
 	@Override
 	public Result updateJobAdvertStatus(int id) {
 		
-		JobAdvert jobAdvert = jobAdvertDao.getById(id);
-		jobAdvert.setActive(false);
+		JobAdvert jobAdvert = jobAdvertDao.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("İlan bulunamadı."));
+		jobAdvert.setActive(!jobAdvert.isActive());
 		jobAdvertDao.save(jobAdvert);
-		//jobAdvertDao.updateJobAdvertStatus(id);
-		return new SuccessResult();
+		return new SuccessResult("İlan başarıyla güncellendi.");
 	}
 	
 	

@@ -28,17 +28,9 @@ public class AuthController {
 	 public Result login(@Valid @RequestBody LoginDto loginDto) {
 		 
 		 DataResult<String> result = userService.login(loginDto);
-		 if (result.isSuccess()) {
-		     System.out.println("JWT Token: " + result.getData());
-		 } else {
-		     System.out.println("Login failed: " + result.getMessage());
-		 }
 		 return result;
+		 
 		}
-	
-//	@PostMapping("/signup")
-//	public Result signUp(@RequestBody User userRegister) {
-//		return userService.createUser(userRegister);
-//	}
+
 
 }

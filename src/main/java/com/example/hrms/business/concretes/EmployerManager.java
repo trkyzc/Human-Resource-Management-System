@@ -47,26 +47,6 @@ public class EmployerManager implements EmployerService {
 		employerDao.save(employer);
 		return new SuccessResult("The employer has been successfully registered.");
 		                         
-		                         
-		//Spring validation sayesinde gerek kalmadı.
-		
-//		if(employer.getCompanyName()== null || employer.getWebAddress()==null ||  
-//				employer.getEmail()==null ||  employer.getPhoneNumber()==null || 
-//				employer.getPassword()==null ||  employer.getRepeatedPassword()==null) {
-//			
-//			return new ErrorResult("Please fill in all fields.");
-//		}
-//		else {
-//			if(!employerDao.findByEmail(employer.getEmail()).isEmpty()) {
-//				return new ErrorResult("Bu mail daha önce kullanılmış");   
-//			}
-//			else {
-//				employer.setPassword(passwordEncoder.encode(employer.getPassword()));
-//				employer.setRepeatedPassword(employer.getPassword());
-//				employerDao.save(employer);
-//				return new SuccessResult("The employer has been successfully registered.");
-//			}
-//		}
 	}
 
 	

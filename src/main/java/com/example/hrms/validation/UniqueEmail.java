@@ -13,7 +13,7 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueEmail {
 	
-	String message() default "Email already exists";
+	String message() default "Bu email zaten kullanılıyor";
 
 	Class<?>[] groups() default {};
 

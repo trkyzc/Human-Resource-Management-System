@@ -13,5 +13,4 @@ public interface CandidateService {
 	Result signUp(CandidateRequestDto candidateRequestDto);
 	DataResult<List<Candidate>> getAll();
 	DataResult<Candidate> getByUsername(String username);
-	//DataResult<String> login(LoginDto loginDto);
 }

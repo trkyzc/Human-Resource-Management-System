@@ -2,6 +2,7 @@ package com.example.hrms.business.concretes;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ import com.example.hrms.entities.dtos.CandidateRequestDto;
 import com.example.hrms.entities.dtos.LoginDto;
 import com.example.hrms.mapper.CandidateMapper;
 import com.example.hrms.security.JwtProvider;
+
+import jakarta.persistence.EntityNotFoundException;
 @Service
 public class CandidateManager implements CandidateService {
 	
@@ -63,38 +66,6 @@ public class CandidateManager implements CandidateService {
 		candidateDao.save(candidate);
 		return new SuccessResult("The candidate has been successfully registered.");
 		
-		
-		//Spring validation sayesinde gerek kalmadı.
-		
-//		if(candidate.getFirstName()== null || candidate.getLastName()==null ||  
-//				candidate.getEmail()==null ||  candidate.getIdentityNumber()==null || 
-//				candidate.getPassword()==null ||  candidate.getRepeatedPassword()==null ||   
-//				Integer.toString(candidate.getBirthYear())==null) {
-//			
-//			return new ErrorResult("Please fill in all fields.");		
-//			
-//		}
-//		else {
-//			if(validationService.validate(candidate.getIdentityNumber(), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthYear())) {
-//				
-//				if(!candidateDao.findByEmailOrIdentityNumber(candidate.getEmail(),candidate.getIdentityNumber()).isEmpty()) {
-//					return new ErrorResult("Bu mail veya tc daha önce kullanılmış");
-//				}
-//				else {
-//
-//					candidate.setPassword(passwordEncoder.encode(candidate.getPassword()));
-//					candidate.setRepeatedPassword(candidate.getPassword());
-//					candidateDao.save(candidate);
-//					return new SuccessResult("The candidate has been successfully registered.");
-//				}
-//				
-//			}
-//			else {
-//				return new ErrorResult("The user could not be verified.");
-//			}
-//			
-//		}
-		
 	}
 
 
@@ -109,15 +80,12 @@ public class CandidateManager implements CandidateService {
 
 	@Override
     public DataResult<Candidate> getByUsername(String username) {
-        Candidate candidate = candidateDao.findByUsername(username);
-        if (candidate != null) {
-            return new SuccessDataResult<>(candidate, "Başarılı.");
-        } else {
-            return new ErrorDataResult<>("Kullanıcı bulunamadı.");
-        }
-    }
-
-
+		
+		Candidate candidate = candidateDao.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Kullanıcı bulunamadı."));
+		return new SuccessDataResult<>(candidate, "Başarılı.");
+		
+	}
+    
 
 
 
