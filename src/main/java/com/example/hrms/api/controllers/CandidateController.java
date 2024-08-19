@@ -30,6 +30,7 @@ import com.example.hrms.security.JwtProvider;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("hrms/api/candidates")
 public class CandidateController {

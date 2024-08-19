@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.hrms.aspect.LogExecutionTime;
 import com.example.hrms.business.abstracts.CandidateService;
 import com.example.hrms.core.utilities.adapters.ValidationService;
 import com.example.hrms.core.utilities.results.DataResult;
@@ -79,6 +80,7 @@ public class CandidateManager implements CandidateService {
 
 
 	@Override
+	@LogExecutionTime
     public DataResult<Candidate> getByUsername(String username) {
 		
 		Candidate candidate = candidateDao.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Kullanıcı bulunamadı."));
