@@ -1,5 +1,7 @@
 package com.example.hrms.entities.dtos;
 
+import java.util.List;
+
 import com.example.hrms.validation.UniqueEmail;
 import com.example.hrms.validation.UniqueUsername;
 
@@ -50,6 +52,6 @@ public class CandidateRequestDto {
 	private String repeatedPassword;
 	
 	@NotNull(message="Okul bilgisi alanı boş bırakılamaz")
-	private SchoolDto[] schools;
+	private SchoolDto schoolDto;
 
 }

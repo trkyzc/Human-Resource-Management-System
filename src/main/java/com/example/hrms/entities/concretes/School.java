@@ -1,14 +1,22 @@
 package com.example.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,9 +36,10 @@ public class School {
 	@Column(name="department")
 	private String department;
 	
-	@ManyToOne()
-	@JoinColumn(name="candidate_id")
-	private Candidate candidate;
+	@OneToMany(mappedBy = "school",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	//@JsonIgnore
+	@JsonBackReference
+	private List<Candidate> candidate;
 	
 	@Column(name = "start_at")
 	private Date startAt;

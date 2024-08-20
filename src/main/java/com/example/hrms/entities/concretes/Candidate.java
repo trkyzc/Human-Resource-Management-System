@@ -3,10 +3,16 @@ package com.example.hrms.entities.concretes;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -36,8 +42,10 @@ public class Candidate extends User {
 	@Column(name="birth_year")
 	private int birthYear;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
-	private List<School> schools;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="school_id")
+	@JsonManagedReference
+	private School school;
 
 }

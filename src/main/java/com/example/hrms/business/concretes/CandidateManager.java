@@ -59,10 +59,13 @@ public class CandidateManager implements CandidateService {
 		Candidate candidate = CandidateMapper.INSTANCE.toEntity(candidateRequestDto);
 		candidate.setPassword(passwordEncoder.encode(candidate.getPassword()));
 		candidate.setRepeatedPassword(candidate.getPassword());
+		
+		//System.out.println(candidate.getSchools());
 	
 		Set<Role> roles = new HashSet<>();
 		roles.add(Role.ROLE_CANDIDATE);
 		candidate.setAuthorities(roles);
+		
 		
 		candidateDao.save(candidate);
 		return new SuccessResult("The candidate has been successfully registered.");
