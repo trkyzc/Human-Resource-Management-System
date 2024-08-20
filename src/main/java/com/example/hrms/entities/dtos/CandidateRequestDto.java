@@ -48,5 +48,8 @@ public class CandidateRequestDto {
 	@NotBlank(message = "Şifre tekrarı alanı boş bırakılamaz!")
 	@NotNull(message = "Şifre tekrarı alanı boş bırakılamaz!")
 	private String repeatedPassword;
+	
+	@NotNull(message="Okul bilgisi alanı boş bırakılamaz")
+	private SchoolDto[] schools;
 
 }

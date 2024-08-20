@@ -1,8 +1,13 @@
 package com.example.hrms.entities.concretes;
 
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,5 +35,9 @@ public class Candidate extends User {
 	
 	@Column(name="birth_year")
 	private int birthYear;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<School> schools;
 
 }
