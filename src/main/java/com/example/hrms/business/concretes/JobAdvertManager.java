@@ -2,13 +2,10 @@ package com.example.hrms.business.concretes;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.hrms.business.abstracts.JobAdvertService;
 import com.example.hrms.core.utilities.results.DataResult;
-import com.example.hrms.core.utilities.results.ErrorDataResult;
 import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.core.utilities.results.SuccessDataResult;
 import com.example.hrms.core.utilities.results.SuccessResult;
@@ -20,8 +17,6 @@ import com.example.hrms.entities.concretes.Position;
 import com.example.hrms.entities.dtos.JobAdvertCreateRequest;
 import com.example.hrms.entities.dtos.JobAdvertDto;
 import com.example.hrms.mapper.JobAdvertMapper;
-//import com.example.hrms.mapper.JobAdvertMapperImpl;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 

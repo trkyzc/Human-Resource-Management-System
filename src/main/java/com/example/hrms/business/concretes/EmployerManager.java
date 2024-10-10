@@ -3,10 +3,8 @@ package com.example.hrms.business.concretes;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.hrms.business.abstracts.EmployerService;
 import com.example.hrms.core.utilities.results.DataResult;
 import com.example.hrms.core.utilities.results.Result;

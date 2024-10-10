@@ -1,17 +1,15 @@
 package com.example.hrms.entities.dtos;
 
 import org.hibernate.validator.constraints.URL;
-
 import com.example.hrms.validation.UniqueEmail;
 import com.example.hrms.validation.UniqueUsername;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
 
-@Data
+
+
 public class EmployerRequestDto {
 	
 	@NotBlank(message = "Kullanıcı adı alanı boş bırakılamaz!")
@@ -48,6 +46,80 @@ public class EmployerRequestDto {
 	@NotNull(message = "Telefon numarası alanı boş bırakılamaz!")
 	@Pattern(regexp = "^\\+90\\d{10}$", message = "Geçersiz telefon numarası! Lütfen '+90' ile başlayan ve 10 haneli bir numara girin.")
 	private String phoneNumber;
+	
+	public EmployerRequestDto() {
+
+	}
+	
+	public EmployerRequestDto(String username, String email, String password, String repeatedPassword,
+			String companyName, String webAddress, String phoneNumber) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.repeatedPassword = repeatedPassword;
+		this.companyName = companyName;
+		this.webAddress = webAddress;
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getRepeatedPassword() {
+		return repeatedPassword;
+	}
+	
+	public void setRepeatedPassword(String repeatedPassword) {
+		this.repeatedPassword = repeatedPassword;
+	}
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+	
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	
+	public String getWebAddress() {
+		return webAddress;
+	}
+	
+	public void setWebAddress(String webAddress) {
+		this.webAddress = webAddress;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
 
 
 }

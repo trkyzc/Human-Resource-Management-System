@@ -1,7 +1,6 @@
 package com.example.hrms.core.utilities.adapters;
 
 import org.springframework.stereotype.Service;
-
 import com.example.hrms.mernisService.MernisService;
 
 @Service

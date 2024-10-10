@@ -1,8 +1,5 @@
 package com.example.hrms.business.abstracts;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,18 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.example.hrms.core.utilities.results.DataResult;
-import com.example.hrms.core.utilities.results.Result;
 import com.example.hrms.core.utilities.results.SuccessDataResult;
-import com.example.hrms.core.utilities.results.SuccessResult;
-import com.example.hrms.dataAccess.abstracts.CandidateDao;
-import com.example.hrms.dataAccess.abstracts.EmployerDao;
 import com.example.hrms.dataAccess.abstracts.UserDao;
-import com.example.hrms.entities.concretes.User;
 import com.example.hrms.entities.dtos.LoginDto;
 import com.example.hrms.security.JwtProvider;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service

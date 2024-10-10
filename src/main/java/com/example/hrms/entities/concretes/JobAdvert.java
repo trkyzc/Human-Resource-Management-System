@@ -1,19 +1,7 @@
 package com.example.hrms.entities.concretes;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-
-
-import org.springframework.data.annotation.Transient;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,15 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
-@Data
+
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="job_adverts")
 public class JobAdvert {
 	
@@ -61,7 +45,7 @@ public class JobAdvert {
 	@JsonIgnore
 	private LocalDate createdDate=LocalDate.now();
 	
-	@Column(name="applicationDeadline")
+	@Column(name="application_deadline")
 	private LocalDate applicationDeadline;   //utilden aldım sqlden de var ????
 	
 	@Column(name="is_active")
@@ -80,6 +64,116 @@ public class JobAdvert {
 	//@Transient
 	private Employer employer;
 	
+	//write getter and setter
 	
+	
+	
+	public JobAdvert() {
+
+	}
+	
+	public JobAdvert(int id, String description, int salaryMin, int salaryMax, int numberOfOpenPosition,
+			LocalDate applicationDeadline, boolean isActive, City city, Position position, Employer employer) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.salaryMin = salaryMin;
+		this.salaryMax = salaryMax;
+		this.numberOfOpenPosition = numberOfOpenPosition;
+		this.applicationDeadline = applicationDeadline;
+		this.isActive = isActive;
+		this.city = city;
+		this.position = position;
+		this.employer = employer;
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getSalaryMin() {
+		return salaryMin;
+	}
+
+	public void setSalaryMin(int salaryMin) {
+		this.salaryMin = salaryMin;
+	}
+
+	public int getSalaryMax() {
+		return salaryMax;
+	}
+
+	public void setSalaryMax(int salaryMax) {
+		this.salaryMax = salaryMax;
+	}
+
+	public int getNumberOfOpenPosition() {
+		return numberOfOpenPosition;
+	}
+
+	public void setNumberOfOpenPosition(int numberOfOpenPosition) {
+		this.numberOfOpenPosition = numberOfOpenPosition;
+	}
+
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDate getApplicationDeadline() {
+		return applicationDeadline;
+	}
+
+	public void setApplicationDeadline(LocalDate applicationDeadline) {
+		this.applicationDeadline = applicationDeadline;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public Employer getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
+	}
 
 }

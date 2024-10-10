@@ -1,0 +1,129 @@
+2024-09-10 09:57:43 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-10 09:57:43 [restartedMain] INFO  com.example.hrms.HrmsApplication - Starting HrmsApplication using Java 21.0.3 with PID 30800 (C:\Users\mtari\git\Human-Resource-Management-System\target\classes started by mtari in C:\Users\mtari\git\Human-Resource-Management-System)
+2024-09-10 09:57:43 [restartedMain] DEBUG com.example.hrms.HrmsApplication - Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-09-10 09:57:43 [restartedMain] INFO  com.example.hrms.HrmsApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-10 09:57:43 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-10 09:57:43 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-10 09:57:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-10 09:57:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 5 JPA repository interfaces.
+2024-09-10 09:57:47 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-09-10 09:57:47 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-10 09:57:47 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-10 09:57:47 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-10 09:57:47 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-10 09:57:47 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4060 ms
+2024-09-10 09:57:47 [restartedMain] DEBUG c.e.hrms.security.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2024-09-10 09:57:48 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-10 09:57:48 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-10 09:57:48 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [javax.persistence.validation.mode], use [jakarta.persistence.validation.mode] instead
+2024-09-10 09:57:48 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-09-10 09:57:48 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-10 09:57:48 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-09-10 09:57:49 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66c159ee
+2024-09-10 09:57:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-09-10 09:57:49 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-10 09:57:50 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-10 09:57:51 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-10 09:57:52 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-10 09:57:52 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-10 09:57:52 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-10 09:57:53 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-10 09:57:56 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-09-10 09:57:56 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-10 09:57:56 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-09-10 09:57:56 [restartedMain] INFO  com.example.hrms.HrmsApplication - Started HrmsApplication in 13.522 seconds (process running for 14.422)
+2024-09-10 09:58:03 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-10 09:58:03 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-10 09:58:03 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-09-10 09:58:04 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in org.springframework.http.ResponseEntity<com.example.hrms.core.utilities.results.Result> com.example.hrms.api.controllers.EmployerController.signUp(com.example.hrms.entities.dtos.EmployerRequestDto) with 2 errors: [Field error in object 'employerRequestDto' on field 'email': rejected value [havelsan@gmail.com]; codes [UniqueEmail.employerRequestDto.email,UniqueEmail.email,UniqueEmail.java.lang.String,UniqueEmail]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employerRequestDto.email,email]; arguments []; default message [email]]; default message [Bu email zaten kullanılıyor]] [Field error in object 'employerRequestDto' on field 'username': rejected value [havelsan]; codes [UniqueUsername.employerRequestDto.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employerRequestDto.username,username]; arguments []; default message [username]]; default message [Bu kullanıcı adı zaten kullanılıyor]] ]
+2024-09-10 10:31:49 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in org.springframework.http.ResponseEntity<com.example.hrms.core.utilities.results.Result> com.example.hrms.api.controllers.EmployerController.signUp(com.example.hrms.entities.dtos.EmployerRequestDto) with 2 errors: [Field error in object 'employerRequestDto' on field 'username': rejected value [havelsan]; codes [UniqueUsername.employerRequestDto.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employerRequestDto.username,username]; arguments []; default message [username]]; default message [Bu kullanıcı adı zaten kullanılıyor]] [Field error in object 'employerRequestDto' on field 'email': rejected value [havelsan@gmail.com]; codes [UniqueEmail.employerRequestDto.email,UniqueEmail.email,UniqueEmail.java.lang.String,UniqueEmail]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employerRequestDto.email,email]; arguments []; default message [email]]; default message [Bu email zaten kullanılıyor]] ]
+2024-09-10 10:32:19 [http-nio-8080-exec-6] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: signUp method is called
+2024-09-10 10:32:19 [http-nio-8080-exec-6] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: signUp method is called
+2024-09-10 10:33:13 [http-nio-8080-exec-8] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getAll method is called
+2024-09-10 10:33:13 [http-nio-8080-exec-8] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getAll method is called
+2024-09-10 10:33:28 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.hrms.core.utilities.results.Result> com.example.hrms.api.controllers.CandidateController.signUp(com.example.hrms.entities.dtos.CandidateRequestDto) with 2 errors: [Field error in object 'candidateRequestDto' on field 'username': rejected value [mtarikyazici]; codes [UniqueUsername.candidateRequestDto.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [candidateRequestDto.username,username]; arguments []; default message [username]]; default message [Bu kullanıcı adı zaten kullanılıyor]] [Field error in object 'candidateRequestDto' on field 'email': rejected value [muhammedtarikyazici@gmail.com]; codes [UniqueEmail.candidateRequestDto.email,UniqueEmail.email,UniqueEmail.java.lang.String,UniqueEmail]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [candidateRequestDto.email,email]; arguments []; default message [email]]; default message [Bu email zaten kullanılıyor]] ]
+2024-09-10 10:33:42 [http-nio-8080-exec-2] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: signUp method is called
+2024-09-10 10:33:42 [http-nio-8080-exec-2] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: signUp method is called
+2024-09-10 10:33:56 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-09-08T22:34:21Z. Current time: 2024-09-10T07:33:56Z, a difference of 118775422 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:427)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589)
+	at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173)
+	at com.example.hrms.security.JwtProvider.extractUsername(JwtProvider.java:71)
+	at com.example.hrms.security.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-09-10 10:34:14 [http-nio-8080-exec-5] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getByUsername method is called
+2024-09-10 10:34:14 [http-nio-8080-exec-5] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getByUsername method is called
+2024-09-10 10:34:14 [http-nio-8080-exec-5] INFO  c.example.hrms.aspect.LoggingAspect - DataResult com.example.hrms.business.concretes.CandidateManager.getByUsername(String) executed in 5ms
+2024-09-10 10:35:22 [http-nio-8080-exec-7] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: addAdvert method is called
+2024-09-10 10:35:22 [http-nio-8080-exec-7] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: addAdvert method is called
+2024-09-10 10:35:43 [http-nio-8080-exec-8] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getByActiveJobAdverts method is called
+2024-09-10 10:35:43 [http-nio-8080-exec-8] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getByActiveJobAdverts method is called
+2024-09-10 10:36:40 [http-nio-8080-exec-9] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: updateJobAdvertStatus method is called
+2024-09-10 10:36:40 [http-nio-8080-exec-9] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: updateJobAdvertStatus method is called
+2024-09-10 10:36:58 [http-nio-8080-exec-10] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getByActiveJobAdverts method is called
+2024-09-10 10:36:58 [http-nio-8080-exec-10] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getByActiveJobAdverts method is called
+2024-09-10 10:37:17 [http-nio-8080-exec-2] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getAllByOrderByApplicationDateAsc method is called
+2024-09-10 10:37:17 [http-nio-8080-exec-2] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getAllByOrderByApplicationDateAsc method is called
+2024-09-10 10:37:37 [http-nio-8080-exec-1] DEBUG c.example.hrms.aspect.LoggingAspect - Before Advice: getAllByEmployer method is called
+2024-09-10 10:37:37 [http-nio-8080-exec-1] DEBUG c.example.hrms.aspect.LoggingAspect - After Advice: getAllByEmployer method is called

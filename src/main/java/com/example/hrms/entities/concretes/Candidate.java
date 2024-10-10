@@ -1,35 +1,21 @@
 package com.example.hrms.entities.concretes;
-
-
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+
 @Entity
 @Table(name="candidates")
-@AllArgsConstructor
-@NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Candidate extends User {
 	
-	
-	
+
+
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -47,5 +33,70 @@ public class Candidate extends User {
 	@JoinColumn(name="school_id")
 	@JsonManagedReference
 	private School school;
+	
+	public Candidate() {
+	
+	}
+
+	public Candidate(int id, String email, String password, String firstName, String lastName, String identityNumber,
+			int birthYear, School school) {
+		super(id, email, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.identityNumber = identityNumber;
+		this.birthYear = birthYear;
+		this.school = school;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getIdentityNumber() {
+		return identityNumber;
+	}
+
+
+	public void setIdentityNumber(String identityNumber) {
+		this.identityNumber = identityNumber;
+	}
+
+
+	public int getBirthYear() {
+		return birthYear;
+	}
+
+
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
+	}
+
+
+	public School getSchool() {
+		return school;
+	}
+
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+	
+	
 
 }

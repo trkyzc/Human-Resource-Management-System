@@ -17,7 +17,7 @@ public interface JobAdvertMapper {
 	@Mapping(source = "employer.companyName", target = "employerName")
     @Mapping(source = "position.name", target = "positionName")
     @Mapping(source = "createdDate", target = "createdDate")
-    @Mapping(source = "applicationDeadline", target = "applicationDate")
+    @Mapping(source = "applicationDeadline", target = "applicationDeadline")
 	@Mapping(source = "numberOfOpenPosition", target = "numberOfOpenPosition")
     JobAdvertDto toDto(JobAdvert jobAdvert);
 	
@@ -26,8 +26,8 @@ public interface JobAdvertMapper {
     @Mapping(source = "employerName", target = "employer.companyName")
     @Mapping(source = "positionName", target = "position.name")
     @Mapping(source = "createdDate", target = "createdDate")
-    @Mapping(source = "applicationDate", target = "applicationDeadline")
-    @Mapping(source = "numberOfOpenPosition", target = "numberOfOpenPosition")
+    @Mapping(source = "applicationDeadline", target = "applicationDeadline")
+    @Mapping(source = "numberOfOpenPosition", target = "numberOfOpenPosition") 
     JobAdvert toEntity(JobAdvertDto jobAdvertDto);
     
     
