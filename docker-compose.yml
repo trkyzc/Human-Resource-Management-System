@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  hrms:
+    image: hrms:0.0.1
+    ports:
+      - 9090:8080
+    environment:
+      DB_URL: "jdbc:postgresql://db:5432/hrms"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "123456"
+  
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: hrms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - 9092:8082
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 9093:80
