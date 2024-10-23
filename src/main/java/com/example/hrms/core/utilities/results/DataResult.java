@@ -1,8 +1,11 @@
 package com.example.hrms.core.utilities.results;
 
-public class DataResult<T> extends Result {
+import java.io.Serializable;
+
+public class DataResult<T> extends Result implements Serializable {
 	
 	
+	private static final long serialVersionUID = 1L;
 	private T data;
 	
 	

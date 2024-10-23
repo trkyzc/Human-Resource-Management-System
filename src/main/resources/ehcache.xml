@@ -1,0 +1,39 @@
+<config xmlns='http://www.ehcache.org/v3'>
+
+	<cache alias="candidateCache">
+		<key-type>java.lang.String</key-type>
+		<value-type>com.example.hrms.core.utilities.results.DataResult</value-type>
+		<expiry>
+		<ttl unit="seconds">3600</ttl>
+		</expiry>
+		<resources>
+			<heap unit="entries">1000</heap>
+			<offheap unit="MB">100</offheap>
+		</resources>
+	</cache>
+	
+	<cache alias="activeJobAdverts">
+		<key-type>java.lang.String</key-type>
+		<value-type>com.example.hrms.core.utilities.results.DataResult</value-type>
+		<expiry>
+		<ttl unit="seconds">3600</ttl>
+		</expiry>
+		<resources>
+			<heap unit="entries">1000</heap>
+			<offheap unit="MB">100</offheap>
+		</resources>
+	</cache>
+	
+	<cache alias="jobAdvertsByEmployerId">
+		<key-type>java.lang.Integer</key-type>
+		<value-type>com.example.hrms.core.utilities.results.DataResult</value-type>
+		<expiry>
+		<ttl unit="seconds">3600</ttl>
+		</expiry>
+		<resources>
+			<heap unit="entries">1000</heap>
+			<offheap unit="MB">100</offheap>
+		</resources>
+	</cache>
+
+</config>

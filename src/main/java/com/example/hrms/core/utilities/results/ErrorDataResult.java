@@ -2,6 +2,9 @@ package com.example.hrms.core.utilities.results;
 
 public class ErrorDataResult<T> extends DataResult<T> {
 	
+	private static final long serialVersionUID = 1L;
+
+
 	public ErrorDataResult(T data,String message) {
 		super(data, false, message);
 	}

@@ -1,5 +1,6 @@
 package com.example.hrms.entities.concretes;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +24,10 @@ import lombok.Data;
 @Table(name="schools")
 @Entity
 @Data
-public class School {
+public class School implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Column(name="id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

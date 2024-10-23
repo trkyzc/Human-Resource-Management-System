@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.hrms.business.abstracts.JobAdvertService;
@@ -56,6 +57,7 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
+	@Cacheable(value = "activeJobAdverts", key = "'activeJobAdvertsCache'")
 	public DataResult<List<JobAdvertDto>> getByActiveJobAdverts() {
 		
 		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvert->new JobAdvertDto(jobAdvert)).collect(Collectors.toList()); // my mapper
@@ -78,6 +80,7 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
+	@Cacheable(value = "jobAdvertsByEmployerId", key = "#employerId")
 	public DataResult<List<JobAdvertDto>> getAllByEmployer(int employerId) {
 		
 		List<JobAdvertDto> jobAdverts = jobAdvertDao.getAllByEmployer(employerId);

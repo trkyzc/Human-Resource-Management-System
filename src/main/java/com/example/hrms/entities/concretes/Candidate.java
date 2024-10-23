@@ -1,6 +1,7 @@
 package com.example.hrms.entities.concretes;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -30,6 +31,8 @@ public class Candidate extends User {
 	
 	
 	
+	private static final long serialVersionUID = 1L;
+
 	@Column(name="first_name")
 	private String firstName;
 	

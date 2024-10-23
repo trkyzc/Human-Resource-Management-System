@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,7 +32,9 @@ import com.example.hrms.mapper.CandidateMapper;
 import com.example.hrms.security.JwtProvider;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class CandidateManager implements CandidateService {
 	
 	CandidateDao candidateDao;
@@ -84,7 +87,10 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	@LogExecutionTime
+	@Cacheable(value = "candidateCache", key = "#username")
     public DataResult<Candidate> getByUsername(String username) {
+		
+		log.info("CandidateManager.getByUsername() metodu çalıştı."); //cache kontrol
 		
 		Candidate candidate = candidateDao.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Kullanıcı bulunamadı."));
 		return new SuccessDataResult<>(candidate, "Başarılı.");

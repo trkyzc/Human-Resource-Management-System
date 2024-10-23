@@ -4,6 +4,7 @@ package com.example.hrms.entities.concretes;
 
 
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
@@ -33,8 +34,10 @@ import lombok.Data;
 @Data
 @Table(name="users")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements UserDetails{
+public class User implements UserDetails, Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	public User() {};
 	
 	@Id
