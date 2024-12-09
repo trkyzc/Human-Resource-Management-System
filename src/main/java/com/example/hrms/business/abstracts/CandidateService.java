@@ -10,7 +10,9 @@ import com.example.hrms.entities.dtos.LoginDto;
 
 public interface CandidateService {
 	
-	Result signUp(CandidateRequestDto candidateRequestDto);
+	DataResult<Candidate> signUp(CandidateRequestDto candidateRequestDto);
 	DataResult<List<Candidate>> getAll();
 	DataResult<Candidate> getByUsername(String username);
+	Result deleteCandidate(int id);
+	DataResult<Candidate> updateCandidate(int id, CandidateRequestDto candidateRequestDto);
 }

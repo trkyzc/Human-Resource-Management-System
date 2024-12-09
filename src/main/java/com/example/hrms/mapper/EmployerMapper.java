@@ -9,7 +9,7 @@ import com.example.hrms.entities.dtos.EmployerRequestDto;
 @Mapper(componentModel="spring")
 public interface EmployerMapper {
 	
-	EmployerMapper INSTANCE = Mappers.getMapper(EmployerMapper.class);
+	//EmployerMapper INSTANCE = Mappers.getMapper(EmployerMapper.class);
 	
 	EmployerRequestDto toDto(Employer employer);
 	

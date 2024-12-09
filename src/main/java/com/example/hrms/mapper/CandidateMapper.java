@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
@@ -16,12 +17,15 @@ import com.example.hrms.entities.dtos.SchoolDto;
 @Mapper(componentModel = "spring")
 public interface CandidateMapper {
 
-    CandidateMapper INSTANCE = Mappers.getMapper(CandidateMapper.class);
+    //CandidateMapper INSTANCE = Mappers.getMapper(CandidateMapper.class);
 
     CandidateRequestDto toDto(Candidate candidate);
 
     @Mapping(target = "school", source = "schoolDto", qualifiedByName = "toSchool")
     Candidate toEntity(CandidateRequestDto candidateRequestDto);
+    
+    @Mapping(target = "school", source = "schoolDto", qualifiedByName = "toSchool")
+    void updateCandidateFromDto(CandidateRequestDto dto, @MappingTarget Candidate entity);
 
     @Named("toSchool")
     default School toSchool(SchoolDto schoolDto) {

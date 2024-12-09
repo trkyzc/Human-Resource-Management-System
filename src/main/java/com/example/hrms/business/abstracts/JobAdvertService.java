@@ -11,6 +11,8 @@ import com.example.hrms.entities.dtos.JobAdvertDto;
 
 public interface JobAdvertService {
 	
+	DataResult<List<JobAdvertDto>> getAll();
+	
 	Result addAdvert(JobAdvertCreateRequest jobAdvertCreateRequest);
 	
 	DataResult<List<JobAdvertDto>> getByActiveJobAdverts();
@@ -22,5 +24,7 @@ public interface JobAdvertService {
 	DataResult<List<JobAdvertDto>> getAllByEmployer(int employerId);
 	
 	Result updateJobAdvertStatus(int id);
+	
+	Result deleteJobAdvert(int id);
 
 }

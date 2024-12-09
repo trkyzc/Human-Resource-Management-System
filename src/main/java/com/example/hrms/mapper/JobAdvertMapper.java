@@ -12,7 +12,7 @@ import com.example.hrms.entities.dtos.JobAdvertDto;
 @Mapper(componentModel="spring")
 public interface JobAdvertMapper {
 	
-	JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
+	//JobAdvertMapper INSTANCE = Mappers.getMapper(JobAdvertMapper.class);
 	
 	@Mapping(source = "employer.companyName", target = "employerName")
     @Mapping(source = "position.name", target = "positionName")

@@ -9,9 +9,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,17 @@ public class CandidateController {
 	 @GetMapping("/getbyusername")
 	 public ResponseEntity<Result> getByUsername(@RequestParam String username) {
 		 return new ResponseEntity<>(candidateService.getByUsername(username), HttpStatus.OK);	
+	 }
+	 
+	 @DeleteMapping("/delete/{id}")
+	 public ResponseEntity<Result> delete(@PathVariable int id) {
+		 return new ResponseEntity<>(candidateService.deleteCandidate(id), HttpStatus.OK);
+	 }
+	 
+	 @PutMapping("/update/{id}")
+	 public ResponseEntity<Result> update(@PathVariable int id,
+				@RequestBody CandidateRequestDto candidateRequestDto) {
+		 return new ResponseEntity<>(candidateService.updateCandidate(id, candidateRequestDto), HttpStatus.OK);
 	 }
 
 }

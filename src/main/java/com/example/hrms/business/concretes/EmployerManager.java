@@ -1,4 +1,4 @@
-package com.example.hrms.business.concretes;
+	package com.example.hrms.business.concretes;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,25 +18,29 @@ import com.example.hrms.entities.concretes.Role;
 import com.example.hrms.entities.dtos.EmployerRequestDto;
 import com.example.hrms.mapper.EmployerMapper;
 
+import jakarta.persistence.EntityNotFoundException;
+
 
 @Service
 public class EmployerManager implements EmployerService {
 	
 	EmployerDao employerDao;
 	PasswordEncoder passwordEncoder;
+	private EmployerMapper employerMapper;
 	
 
-	public EmployerManager(EmployerDao employerDao, PasswordEncoder passwordEncoder) {
+	public EmployerManager(EmployerDao employerDao, PasswordEncoder passwordEncoder, EmployerMapper employerMapper) {
 		super();
 		this.employerDao = employerDao;
 		this.passwordEncoder = passwordEncoder;
+		this.employerMapper = employerMapper;
 	}
 
 
 	@Override
 	public Result signUp(EmployerRequestDto employerRequestDto) {
 		
-		Employer employer = EmployerMapper.INSTANCE.toEntity(employerRequestDto);
+		Employer employer = employerMapper.toEntity(employerRequestDto);
 		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
 		employer.setRepeatedPassword(employer.getPassword());
 
@@ -56,6 +60,13 @@ public class EmployerManager implements EmployerService {
 	}
 
 
-	
+	@Override
+	public Result deleteEmployer(int id) {
+		Employer employer = employerDao.findById(id).orElseThrow(() -> new EntityNotFoundException("Employer not found"));
+		employerDao.delete(employer);
+		return new SuccessResult("Employer has been deleted successfully.");
+	}
+
+
 
 }

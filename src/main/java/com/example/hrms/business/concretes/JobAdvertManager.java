@@ -1,13 +1,20 @@
 package com.example.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.example.hrms.business.abstracts.JobAdvertService;
+import com.example.hrms.cache.CacheableConfig;
+import com.example.hrms.cache.CacheableConfig.CacheTarget;
 import com.example.hrms.core.utilities.results.DataResult;
 import com.example.hrms.core.utilities.results.ErrorDataResult;
 import com.example.hrms.core.utilities.results.Result;
@@ -25,25 +32,35 @@ import com.example.hrms.mapper.JobAdvertMapper;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
 	
 	private JobAdvertDao jobAdvertDao;
+	private JobAdvertMapper jobAdvertMapper;
 	
 	@Autowired
 	private EntityManager entityManager;
 	
-	public JobAdvertManager(JobAdvertDao jobAdvertDao) {
+	@Autowired
+	private CacheManager cacheManager;
+	
+	public JobAdvertManager(JobAdvertDao jobAdvertDao, JobAdvertMapper jobAdvertMapper) {
 		super();
 		this.jobAdvertDao = jobAdvertDao;
+		this.jobAdvertMapper = jobAdvertMapper;
 	}
 
 	@Override
+	//@CacheableConfig(cacheTarget = CacheTarget.SHARED)
+	@Caching(evict = { @CacheEvict(value = "jobAdverts", allEntries = true, cacheResolver = "cacheResolver"),
+            @CacheEvict(value = "activeJobAdverts", allEntries = true, cacheResolver = "cacheResolver"),
+            @CacheEvict(value = "jobAdvertsByEmployerId", key ="#jobAdvertCreateRequest.getEmployerId()" , cacheResolver = "cacheResolver")})
 	public Result addAdvert(JobAdvertCreateRequest jobAdvertCreateRequest) {
 		
-		JobAdvert jobAdvert = JobAdvertMapper.INSTANCE.toEntity(jobAdvertCreateRequest);
+		JobAdvert jobAdvert = jobAdvertMapper.toEntity(jobAdvertCreateRequest);
 		
 		City city = entityManager.getReference(City.class, jobAdvertCreateRequest.getCityId());
 		Position position = entityManager.getReference(Position.class, jobAdvertCreateRequest.getPositionId());
@@ -57,12 +74,14 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
-	@Cacheable(value = "activeJobAdverts", key = "'activeJobAdvertsCache'")
+	@Transactional  //Hibernate oturumunun açık kalmasını sağlar. Lazy loading yapılabilir.
+	@CacheableConfig(cacheTarget = CacheTarget.SHARED)
+	@Cacheable(value = "activeJobAdverts", key = "'activeJobAdvertsCache'",cacheResolver = "cacheResolver") //value = cache adı, key = cache anahtarı
 	public DataResult<List<JobAdvertDto>> getByActiveJobAdverts() {
 		
 		//List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvert->new JobAdvertDto(jobAdvert)).collect(Collectors.toList()); // my mapper
 		
-		List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(JobAdvertMapper.INSTANCE::toDto).collect(Collectors.toList());
+		List<JobAdvertDto> jobAdverts = jobAdvertDao.getByIsActiveTrue().stream().map(jobAdvertMapper::toDto).collect(Collectors.toList());
 		
 		return new SuccessDataResult<List<JobAdvertDto>>(jobAdverts,"İlanlar başarıyla görüntülendi.");
 	}
@@ -80,7 +99,8 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
-	@Cacheable(value = "jobAdvertsByEmployerId", key = "#employerId")
+	@CacheableConfig(cacheTarget = CacheTarget.MEMORY_AND_SHARED)
+	@Cacheable(value = "jobAdvertsByEmployerId", key = "#employerId", cacheResolver = "cacheResolver")
 	public DataResult<List<JobAdvertDto>> getAllByEmployer(int employerId) {
 		
 		List<JobAdvertDto> jobAdverts = jobAdvertDao.getAllByEmployer(employerId);
@@ -93,14 +113,48 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
+	@CacheEvict(value = "activeJobAdverts", allEntries = true)
 	public Result updateJobAdvertStatus(int id) {
 		
 		JobAdvert jobAdvert = jobAdvertDao.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("İlan bulunamadı."));
 		jobAdvert.setActive(!jobAdvert.isActive());
 		jobAdvertDao.save(jobAdvert);
+		
+		//employerId'ye göre cache temizleme
+		if (jobAdvert.getEmployer() != null) {
+	        cacheManager.getCache("jobAdvertsByEmployerId")
+	                    .evict(jobAdvert.getEmployer().getId()); 
+	    }
+
+		
 		return new SuccessResult("İlan başarıyla güncellendi.");
 	}
+
+	@Override
+	@Transactional
+	@CacheableConfig(cacheTarget = CacheTarget.SHARED)
+	@Cacheable(value = "jobAdverts", key = "'allJobAdverts'", cacheResolver = "cacheResolver",unless = "#result == null")
+	public DataResult<List<JobAdvertDto>> getAll() {
+		
+		List<JobAdvertDto> jobAdverts = jobAdvertDao.findAll().stream().map(jobAdvertMapper::toDto).collect(Collectors.toList());
+		return new SuccessDataResult<List<JobAdvertDto>>(jobAdverts, "İlanlar başarıyla görüntülendi.");
+    }
+
+	@Override
+	@Caching(evict = { @CacheEvict(value = "jobAdverts", allEntries = true, cacheResolver = "cacheResolver"),
+			@CacheEvict(value = "jobAdvertsByEmployerId", allEntries = true, cacheResolver = "cacheResolver"),
+			@CacheEvict(value = "activeJobAdverts", allEntries = true, cacheResolver = "cacheResolver")})
+	public Result deleteJobAdvert(int id) {
+		    
+        Optional<JobAdvert> jobAdvert = jobAdvertDao.findById(id);
+		if (jobAdvert == null) {
+			throw new EntityNotFoundException("İlan bulunamadı.");
+		}
+		jobAdvertDao.deleteById(id);
+		return new SuccessResult("İlan başarıyla silindi.");
+	}
+	
 	
 	
 

@@ -12,6 +12,7 @@ public interface EmployerService {
 	
 	Result signUp(EmployerRequestDto employerRequestDto);
 	DataResult<List<Employer>> getAll();
+	Result deleteEmployer(int id);
 	
 
 }
